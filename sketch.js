@@ -6,7 +6,11 @@ function setup() {
 
 function cBack(data){
   for(let i=0; i<data.length;i++){
-    createA(`https://asimsedhain.github.io/${data[i].name}/`, `${data[i].name}`);
+    if(data[i].name=="asimsedhain.github.io"){
+      continue;
+    }else{
+      createDiv("").child(createA(`https://asimsedhain.github.io/${data[i].name}/`, `${data[i].name}`));
+    }
   }
   
 }
