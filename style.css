@@ -1,0 +1,13 @@
+div{
+    display: block;
+    top: 25px;
+    left: 450px;
+    padding: 15px;
+    height:auto;
+    width: auto;
+}
+a{
+    color: red;
+    text-decoration: none;
+    font-size: 25px;
+}
