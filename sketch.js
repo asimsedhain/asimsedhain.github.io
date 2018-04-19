@@ -6,10 +6,14 @@ function setup() {
 
 function cBack(data){
   for(let i=0; i<data.length;i++){
-    if(data[i].name=="asimsedhain.github.io"){
+    if(data[i].name=="asimsedhain.github.io" || data[i].has_pages === false){
       continue;
     }else{
-      createDiv("").child(createA(`https://asimsedhain.github.io/${data[i].name}/`, `${data[i].name}`));
+      let a = createDiv(data[i].name);
+      a.mouseClicked(() => {
+        a.style("background", "black");
+        window.location = `https://asimsedhain.github.io/${data[i].name}`;
+      });
     }
   }
   
