@@ -5,9 +5,8 @@ div{
     padding: 15px;
     height:auto;
     width: auto;
-}
-a{
     color: red;
     text-decoration: none;
     font-size: 25px;
+    border: 1px solid red;
 }
