@@ -1,15 +1,13 @@
 div{
     display: block;
-    top: 25px;
-    left: 450px;
     padding: 15px;
-    height:auto;
-    width: auto;
+    margin: 0px;
     color: red;
     text-decoration: none;
-    font-size: 25px;
-    border: 1px solid red;
+    font-size: 22px;
+    outline: 1px solid red;
 }
 h1{
     color: red;
+    padding: 15px;
 }

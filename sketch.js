@@ -1,4 +1,5 @@
 function setup() {
+  noCanvas();
   noLoop();
   loadJSON("https://api.github.com/users/asimsedhain/repos", cBack);
 
