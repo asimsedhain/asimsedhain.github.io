@@ -1,13 +1,14 @@
 div{
     display: block;
-    padding: 15px;
+    padding: 17px;
     margin: 0px;
     color: red;
     text-decoration: none;
-    font-size: 22px;
+    font-size: 25px;
     outline: 1px solid red;
 }
 h1{
     color: red;
     padding: 15px;
+    font-size: 35px;
 }
