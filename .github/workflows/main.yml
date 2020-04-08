@@ -12,5 +12,5 @@ jobs:
           args: "--standalone --output=index.html README.md"
       - uses: actions/upload-artifact@master
         with:
-          name: output
-          path: output
+          name: index.html
+          path: ./
