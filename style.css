@@ -1,9 +1,5 @@
 div{
-    display: block;
-    padding: 17px;
-    margin: 0px;
-    color: red;
+    
     text-decoration: none;
-    font-size: 25px;
-    outline: 1px solid red;
+    font-size: 18px;
 }
