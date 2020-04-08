@@ -8,9 +8,9 @@ My primary interest lie in software devolopment with a focus on Machine Learning
 ---
 
 ## Contact Information
-Email: ASedhain@patriots.uttyler.edu 
+Email: [ASedhain@patriots.uttyler.edu](ASedhain@patriots.uttyler.edu)
 
-GitHub: github.com/asimsedhain 
+GitHub: [github.com/asimsedhain](github.com/asimsedhain) 
 
 ---
 
