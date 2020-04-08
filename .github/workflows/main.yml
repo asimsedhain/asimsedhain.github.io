@@ -1,4 +1,4 @@
-name: Long Usage
+name: Advanced Usage
 
 on: push
 
@@ -6,6 +6,12 @@ jobs:
   convert_via_pandoc:
     runs-on: ubuntu-18.04
     steps:
-      - uses: docker://pandoc/core:2.9
+      - uses: actions/checkout@v2
+      - run: mkdir output
+      - uses: docker://pandoc/latex:2.9
+        with: # needs a README in your repo root!
+          args: "--standalone --output=output/README.pdf README.md"
+      - uses: actions/upload-artifact@master
         with:
-          args: "--standalone --output=index.html README.md"
+          name: output
+          path: output
