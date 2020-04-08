@@ -8,9 +8,9 @@ My primary interest lie in software devolopment with a focus on Machine Learning
 ---
 
 ## Contact Information
-Email: [ASedhain@patriots.uttyler.edu](ASedhain@patriots.uttyler.edu)
+Email: [ASedhain@patriots.uttyler.edu](mailto:ASedhain@patriots.uttyler.edu)
 
-GitHub: [github.com/asimsedhain](github.com/asimsedhain) 
+GitHub: [github.com/asimsedhain](https://github.com/asimsedhain) 
 
 ---
 
@@ -18,11 +18,11 @@ GitHub: [github.com/asimsedhain](github.com/asimsedhain)
 
 ### [GAN Colorization](https://github.com/asimsedhain/COSC4351-GAN) (Currently Working)
 
-* Colrization of grayscale images using Genarative Adversarail Networks.
+* Colorization of grayscale images using Genarative Adversarail Networks.
 * Trainned on Imagenet Dataset using the TACC Maverick2 system for high performance, distributed training.
 * Used Python, Tensorflow, OpenCV, and git.
 
-### [Classroom Technology Web Application](classroom-technology.herokuapp.com)
+### [Classroom Technology Web Application](https://classroom-technology.herokuapp.com)
 * Full-Stack web application for managing and visualizing classroom data for the Classroom Technology Department deployed on Heroku.
 * Allows employees to keep record of the classrooms in the university and their current status. 
 * Developed the user interface, backend interface, user authentication, database and data models.
