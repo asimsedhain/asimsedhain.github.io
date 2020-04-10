@@ -1,5 +1,5 @@
 
-name: Make Index.html
+name: Make
 
 on:
   push:

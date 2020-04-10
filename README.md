@@ -3,7 +3,7 @@
 ## About Me
 My name is Ashim Sedhain. I am a Computer Science student at the University of Texas at Tyler set to graduate in May 2022.
 
-My primary interest lie in software devolopment with a focus on Machine Learning. You can find contact details, as well as links to projects I have worked on down below.
+My primary interest lie in software development with a focus on Machine Learning. You can find contact details, as well as links to projects I have worked on down below.
 
 ---
 
