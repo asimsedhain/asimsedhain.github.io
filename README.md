@@ -1,11 +1,12 @@
 # Ashim Sedhain
 <!--
 Any changes above this is not going to be effected in the final output.
-Only changes after the h2 tag will be shown in the final output
+Only changes after the h2 tag will be shown in the final output.
+If you want to change anything above this, please edit temp.html
 -->
 ---
 <!--
-Change anything below this.
+Changes below this will be shown in the final output.
 You will only need to change here.
 Bootstrap styling will be added by the script.py
  -->
@@ -41,3 +42,13 @@ GitHub: [github.com/asimsedhain](https://github.com/asimsedhain)
 * Using NPL to classify IT support tickets.
 * Project included cleaning, analyzing, and classifying the raw text data submitted by the customer and deployment of a running model on a web-app as a proof of concept. 
 * Used Python, NumPy, Pandas, Matplotlib, Seaborn, Scikit-Learn and Flask.
+
+## Experience
+### Research Assistant, UT Tyler [Feb 2020 - Present]
+* Working on development of image classification techniques based on invarient features.
+* Four people team led by Dr. Arun Kulkarni.
+### Research Assistant, UT Tyler [May 2019 - November 2019]
+* Worked on High-Performance Computing using the GPU under Dr. Subramanian as a part of two-person research group.
+* Developed, tested and mearsured the performance of parallel algorithms such as map, reduce, and scan.
+* Weekly meetings to discuss progress and plans.
+* Used CUDA, C, Python and PyCUDA.
