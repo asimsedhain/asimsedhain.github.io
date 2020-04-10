@@ -54,4 +54,3 @@ GitHub: [github.com/asimsedhain](https://github.com/asimsedhain)
 * Developed, tested and mearsured the performance of parallel algorithms such as map, reduce, and scan.
 * Weekly meetings to discuss progress and plans.
 * Used CUDA, C, Python and PyCUDA.
----
