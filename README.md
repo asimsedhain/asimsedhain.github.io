@@ -42,7 +42,7 @@ GitHub: [github.com/asimsedhain](https://github.com/asimsedhain)
 * Using NPL to classify IT support tickets.
 * Project included cleaning, analyzing, and classifying the raw text data submitted by the customer and deployment of a running model on a web-app as a proof of concept. 
 * Used Python, NumPy, Pandas, Matplotlib, Seaborn, Scikit-Learn and Flask.
-
+---
 ## Experience
 ### Research Assistant, UT Tyler [Feb 2020 - Present]
 * Working on development of image classification techniques based on invarient features.
@@ -52,3 +52,4 @@ GitHub: [github.com/asimsedhain](https://github.com/asimsedhain)
 * Developed, tested and mearsured the performance of parallel algorithms such as map, reduce, and scan.
 * Weekly meetings to discuss progress and plans.
 * Used CUDA, C, Python and PyCUDA.
+---
