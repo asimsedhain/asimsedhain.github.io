@@ -24,7 +24,7 @@ jobs:
         pip install md-to-html
         md-to-html --input README.md --output index.html
         ls
-    - name: Upload artifact
-      uses: skx/github-action-publish-binaries@master
+    - name: Uploading the converted index.html
+      uses: mikeal/publish-to-github-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
