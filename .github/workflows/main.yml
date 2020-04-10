@@ -23,10 +23,8 @@ jobs:
       run: |
         pip install md-to-html
         md-to-html --input README.md --output index.html
+        ls
     - name: Upload artifact
-      uses: actions/upload-artifact@v1.0.0
-      with:
-    # Artifact name
-        name: index.html
-    # Directory containing files to upload
-        path: ./
+      uses: skx/github-action-publish-binaries@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
