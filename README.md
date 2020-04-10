@@ -13,7 +13,9 @@ Bootstrap styling will be added by the script.py
 ## About Me
 My name is Ashim Sedhain. I am a Computer Science student at the University of Texas at Tyler set to graduate in May 2022.
 
-My primary interest lie in software development with a focus on Machine Learning. You can find contact details, as well as links to projects I have worked on down below.
+I have been programming for 6 years and have a range of experience in software development and research. My primary interest lie in software development with a focus in Machine Learning and data driven solutions.
+
+You can find contact details, as well as links to projects I have worked on down below.
 
 ---
 
@@ -33,7 +35,7 @@ GitHub: [github.com/asimsedhain](https://github.com/asimsedhain)
 * Used Python, Tensorflow, OpenCV, and git.
 
 ### [Classroom Technology Web Application](https://classroom-technology.herokuapp.com)
-* Full-Stack web application for managing and visualizing classroom data for the Classroom Technology Department deployed on Heroku.
+* Full-Stack web application for managing and visualizing classroom data for the Classroom Technology Department deployed.
 * Allows employees to keep record of the classrooms in the university and their current status. 
 * Developed the user interface, backend interface, user authentication, database and data models.
 * Used HTML/CSS, JavaScript, Node.js, Express, Heroku, MongoDB and Git.
