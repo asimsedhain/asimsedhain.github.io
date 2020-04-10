@@ -23,7 +23,7 @@ jobs:
       run: |
         pip install md-to-html
         md-to-html --input README.md --output index.html
-        ls
+        python3 script.py
     - name: Uploading the converted index.html
       uses: mikeal/publish-to-github-action@master
       env:
