@@ -14,7 +14,7 @@ Bootstrap styling will be added by the script.py
 ---
 My name is Ashim Sedhain. I am a Computer Science student at the University of Texas at Tyler set to graduate in May 2022.
 
-I have been programming for 6 years and have a range of experience in software development and research. My primary interest lie in software development with a focus in Machine Learning and data driven solutions.
+I have been programming for 6 years and have a range of experience in software development and research. My primary interest lie in software development with a focus in Machine Learning.
 
 You can find contact details, as well as links to projects I have worked on down below.
 
