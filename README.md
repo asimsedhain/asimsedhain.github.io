@@ -28,7 +28,7 @@ GitHub: [github.com/asimsedhain](https://github.com/asimsedhain)
 ---
 ### [GAN Colorization](https://github.com/asimsedhain/COSC4351-GAN) (Currently Working)
 
-* Colorization of grayscale images using Genarative Adversarail Networks.
+* Web App for colorization of grayscale images using Genarative Adversarail Networks.
 * Trainned on Imagenet Dataset using the TACC Maverick2 system for high performance, distributed training.
 * Used Python, Tensorflow, OpenCV, and git.
 
