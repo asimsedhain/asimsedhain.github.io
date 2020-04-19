@@ -32,7 +32,7 @@ GitHub: [github.com/asimsedhain](https://github.com/asimsedhain)
 * Trainned on Imagenet Dataset using the TACC Maverick2 system for high performance, distributed training.
 * Used Node, Express, Python, Flask, Tensorflow, OpenCV, and git.
 
-### [Classroom Technology Web Application](https://classroom-technology.herokuapp.com)
+### [Classroom Technology Web Application](https://classroom-technology.herokuapp.com) ([Github Repo](https://github.com/asimsedhain/Classroom-technology))
 * Full-Stack web application for managing and visualizing classroom data for the Classroom Technology Department deployed.
 * Allows employees to keep record of the classrooms in the university and their current status. 
 * Developed the user interface, backend interface, user authentication, database and data models.
