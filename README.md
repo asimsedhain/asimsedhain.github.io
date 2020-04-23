@@ -28,9 +28,9 @@ GitHub: [github.com/asimsedhain](https://github.com/asimsedhain)
 ---
 ### [GAN Colorization](https://github.com/asimsedhain/COSC4351-GAN) (Currently Working)
 
-* Web App for colorization of grayscale images using Genarative Adversarail Networks.
-* Trainned on Imagenet Dataset using the TACC Maverick2 system for high performance, distributed training.
-* Used Node, Express, Python, Flask, Tensorflow, OpenCV, and git.
+* Web App for colorization of grayscale images using Generative Adversarial Networks.
+* Trained on ImageNet Dataset using the TACC Maverick2 system for high performance, distributed training.
+* Used Python, TensorFlow, Horovod, OpenCV, Node, Express, Flask and git.
 
 ### [Classroom Technology Web Application](https://classroom-technology.herokuapp.com) ([Github Repo](https://github.com/asimsedhain/Classroom-technology))
 * Full-Stack web application for managing and visualizing classroom data for the Classroom Technology Department deployed.
@@ -48,7 +48,7 @@ GitHub: [github.com/asimsedhain](https://github.com/asimsedhain)
 ## Experience
 ---
 ### Research Assistant, UT Tyler [Feb 2020 - Present]
-* Working on development of image classification techniques based on invarient features.
+* Working on development of image classification techniques based on invariant features.
 * Four people team led by Dr. Arun Kulkarni.
 ### Research Assistant, UT Tyler [May 2019 - November 2019]
 * Worked on High-Performance Computing using the GPU under Dr. Subramanian as a part of two-person research group.
