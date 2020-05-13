@@ -26,20 +26,21 @@ GitHub: [github.com/asimsedhain](https://github.com/asimsedhain)
 
 ## Projects
 ---
-### [GAN Colorization](https://github.com/asimsedhain/COSC4351-GAN) (Currently Working)
+### [GAN Colorization](http://color-this.eastus.cloudapp.azure.com) ([View Source](https://github.com/asimsedhain/COSC4351-GAN))
 
 * Web App for colorization of grayscale images using Generative Adversarial Networks.
 * Trained on ImageNet Dataset using the TACC Maverick2 system for high performance, distributed training.
-* Used Python, TensorFlow, Horovod, OpenCV, Node, Express, Flask, and git.
+* Handling everything from model training to deployment.
+* Used Python, TensorFlow, Horovod, OpenCV, Node, Express, React, Redis, Azure and Git.
 
-### [Classroom Technology Web Application](https://classroom-technology.herokuapp.com) ([Github Repo](https://github.com/asimsedhain/Classroom-technology))
+### [Classroom Technology Web Application](https://classroom-technology.herokuapp.com) ([View Source](https://github.com/asimsedhain/Classroom-technology))
 * Full-Stack web application for managing and visualizing classroom data for the Classroom Technology Department deployed.
 * Allows employees to keep a record of the classrooms in the university and their current status. 
 * Developed the user interface, backend interface, user authentication, database, and data models.
 * Currently being used by part-time staff at the UT Tyler Classroom Technology department.
 * Used HTML/CSS, JavaScript, Node.js, Express, Heroku, MongoDB, and Git.
 
-### [IT Ticket Classification](https://github.com/asimsedhain/Ticket-Prediction)
+### IT Ticket Classification [View Source](https://github.com/asimsedhain/Ticket-Prediction)
 * Using NPL to classify IT support tickets.
 * The project included cleaning, analyzing, and classifying the raw text data submitted by the customer and deployment of a running model on a web-app as a proof of concept.
 * Achieved 80% F1 score on the validation set.
