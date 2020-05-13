@@ -26,7 +26,7 @@ GitHub: [github.com/asimsedhain](https://github.com/asimsedhain)
 
 ## Projects
 ---
-### [GAN Colorization](http://color-this.eastus.cloudapp.azure.com) ([View Source](https://github.com/asimsedhain/COSC4351-GAN))
+### [GAN Colorization](http://color-this.eastus.cloudapp.azure.com) ([View Source](https://github.com/asimsedhain/Color-This))
 
 * Web App for colorization of grayscale images using Generative Adversarial Networks.
 * Trained on ImageNet Dataset using the TACC Maverick2 system for high performance, distributed training.
