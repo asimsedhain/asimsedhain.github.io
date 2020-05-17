@@ -30,7 +30,6 @@ GitHub: [github.com/asimsedhain](https://github.com/asimsedhain)
 
 * Web App for colorization of grayscale images using Generative Adversarial Networks.
 * Trained on ImageNet Dataset using the TACC Maverick2 system for high performance, distributed training.
-* Handling everything from model training to deployment.
 * Used Python, TensorFlow, Horovod, OpenCV, Node, Express, React, Redis, Azure and Git.
 
 ### [Classroom Technology Web Application](https://classroom-technology.herokuapp.com) ([View Source](https://github.com/asimsedhain/Classroom-technology))
