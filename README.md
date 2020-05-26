@@ -33,7 +33,7 @@ GitHub: [github.com/asimsedhain](https://github.com/asimsedhain)
 * Used Python, TensorFlow, Horovod, OpenCV, Node, Express, React, Redis, Azure and Git.
 
 ### [Classroom Technology Web Application](https://classroom-technology.herokuapp.com) ([View Source](https://github.com/asimsedhain/Classroom-technology))
-* Full-Stack web application for managing and visualizing classroom data for the Classroom Technology Department deployed.
+* Full-Stack web application for managing and visualizing classroom data for the Classroom Technology Department.
 * Allows employees to keep a record of the classrooms in the university and their current status. 
 * Developed the user interface, backend interface, user authentication, database, and data models.
 * Currently being used by part-time staff at the UT Tyler Classroom Technology department.
