@@ -26,11 +26,22 @@ GitHub: [github.com/asimsedhain](https://github.com/asimsedhain)
 
 ## Projects
 ---
-### [GAN Colorization](https://colorthis.z13.web.core.windows.net/) ([View Source](https://github.com/asimsedhain/Color-This))
+### [GAN Colorization](https://colorthis.netlify.app/) ([View Source](https://github.com/asimsedhain/Color-This))
 
 * Web App for colorization of grayscale images using Generative Adversarial Networks.
 * Trained on ImageNet Dataset using the TACC Maverick2 system for high performance, distributed training.
 * Used Python, TensorFlow, Horovod, OpenCV, Node, Express, React, Redis, Azure and Git.
+
+### [Capos](https://capos.netlify.app/)View Source(Currently Private)
+* Web Application for creating portfolio websites.
+* Used React and Node.
+
+### IT Ticket Classification [View Source](https://github.com/asimsedhain/Ticket-Prediction)
+* Using NPL to classify IT support tickets.
+* The project included cleaning, analyzing, and classifying the raw text data submitted by the customer and deployment of a running model on a web-app as a proof of concept.
+* Achieved 80% F1 score on the validation set.
+* Used Python, NumPy, Pandas, Matplotlib, Seaborn, Scikit-Learn, and Flask.
+
 
 ### [Classroom Technology Web Application](https://classroom-technology.herokuapp.com) ([View Source](https://github.com/asimsedhain/Classroom-technology))
 * Full-Stack web application for managing and visualizing classroom data for the Classroom Technology Department.
@@ -38,12 +49,6 @@ GitHub: [github.com/asimsedhain](https://github.com/asimsedhain)
 * Developed the user interface, backend interface, user authentication, database, and data models.
 * Currently being used by part-time staff at the UT Tyler Classroom Technology department.
 * Used HTML/CSS, JavaScript, Node.js, Express, Heroku, MongoDB, and Git.
-
-### IT Ticket Classification [View Source](https://github.com/asimsedhain/Ticket-Prediction)
-* Using NPL to classify IT support tickets.
-* The project included cleaning, analyzing, and classifying the raw text data submitted by the customer and deployment of a running model on a web-app as a proof of concept.
-* Achieved 80% F1 score on the validation set.
-* Used Python, NumPy, Pandas, Matplotlib, Seaborn, Scikit-Learn, and Flask.
 
 ## Experience
 ---
