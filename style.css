@@ -57,6 +57,10 @@ li{
 	color: var(--text-color);
 }
 
+ul{
+	margin-bottom: 0.8em;
+}
+
 blockquote > p > em{
 	margin-left: 2px;
 	margin-right: 2px;
