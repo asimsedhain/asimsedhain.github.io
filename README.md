@@ -11,11 +11,9 @@ Bootstrap styling will be added by the script.py
  -->
 # hi👋, i am *Ashim Sedhain*
 ---
-I am a **Computer Science** student at the **University of Texas at Tyler** set to graduate in May 2022.
+**Computer Science** student `@` **The University of Texas at Tyler** `->` May 2022.
 
-I have been programming for **6 years** and have a range of experience in **Software Engineering** and **Research**. My primary interest lies in **Web Development** with a focus on integrating **Web Solutions** and **Machine Learning**. 
-
-You can find contact details, as well as links to projects I have worked on down below.
+I have been programming for **six years** with a range of experience in **Software Engineering** and **Research**. My primary interest lies in integrating **Web Development** and **Machine Learning**. 
 
 ## Contact Information📇
 ---
@@ -25,10 +23,11 @@ You can find contact details, as well as links to projects I have worked on down
 
 ## Projects🚧
 ---
-### GAN Colorization🌈
+### Color This🌈
 > [💻View Live](https://colorthis.netlify.app/) [🐙GitHub](https://github.com/asimsedhain/Color-This)
 
-* Web Application for colorization of grayscale images using Generative Adversarial Networks.
+* Web Application for Image Colorization. 
+* Implemented SOTA Generative Adversarial Network.
 * Trained on ImageNet Dataset using the TACC Maverick2 system for high performance, distributed training.
 * Designed a decoupled and scalable system architecture.
 * Presented Demo in Summer of Shipping Demo Session.
@@ -38,6 +37,7 @@ You can find contact details, as well as links to projects I have worked on down
 > [💻View Live](https://capos.netlify.app/)
 * Full-Stack Web Application for creating portfolio websites.
 * Worked in a two person team using the agile methodology.
+* Desgined and developed User Interface, Restful API, and User Authentication using JWT.
 * Set up CI/CD pipeline using GitHub Actions.
 > *React* *Node* *Docker* *Azure* *Git* *Express*
 
@@ -52,7 +52,7 @@ You can find contact details, as well as links to projects I have worked on down
 ### Classroom Technology Web Application🏯
 > [💻View Live](https://classroom-technology.herokuapp.com) [🐙GitHub](https://github.com/asimsedhain/Classroom-technology)
 * Full-Stack web application for managing and visualizing classroom data for the Classroom Technology Department.
-* Allows employees to keep a record of the classrooms in the university and their current status. 
+* Allows employee to keep a record of the classrooms in the university and their current status. 
 * Developed the user interface, backend interface, user authentication, database, and data models.
 * Currently being used by part-time staff at the UT Tyler Classroom Technology department.
 > *HTML/CSS* *JavaScript* *Node.js* *Express* *Heroku* *MongoDB* *Git*
@@ -62,10 +62,9 @@ You can find contact details, as well as links to projects I have worked on down
 ### Research Assistant, UT Tyler [Feb 2020 - Present]
 * Working on the development of image classification techniques based on invariant features.
 * Four people team led by Dr. Arun Kulkarni.
-### Research Assistant, UT Tyler [May 2019 - November 2019]
+### Research Assistant, UT Tyler [May - November 2019]
 * Worked on High-Performance Computing using the GPU under Dr. Subramanian as a part of two-person research group.
 * Developed, tested, and measured the performance of parallel algorithms such as map, reduce, and scan.
-* Weekly meetings to discuss progress and plans.
 > *CUDA* *C* *Python* *PyCUDA*
 
 ## Honor and Awards🏆
