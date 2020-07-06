@@ -9,7 +9,7 @@ Changes below this will be shown in the final output.
 You will only need to change here.
 Bootstrap styling will be added by the script.py
  -->
-# Hi👋, I am Ashim Sedhain
+# Hi👋, I am <span>Ashim Sedhain<span/>
 ---
 I am a Computer Science student at the University of Texas at Tyler set to graduate in May 2022.
 
