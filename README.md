@@ -23,7 +23,7 @@ You can find contact details, as well as links to projects I have worked on down
 
 **GitHub:** [github.com/asimsedhain](https://github.com/asimsedhain) 
 
-## Projects
+## Projects🚧
 ---
 ### GAN Colorization🌈
 > [💻View Live](https://colorthis.netlify.app/) [🐙GitHub](https://github.com/asimsedhain/Color-This)
@@ -49,7 +49,7 @@ You can find contact details, as well as links to projects I have worked on down
 > *Python* *NumPy* *Pandas* *Matplotlib* *Seaborn* *Scikit-Learn* *Flask*
 
 
-### Classroom Technology Web Application
+### Classroom Technology Web Application🏯
 > [💻View Live](https://classroom-technology.herokuapp.com) [🐙GitHub](https://github.com/asimsedhain/Classroom-technology)
 * Full-Stack web application for managing and visualizing classroom data for the Classroom Technology Department.
 * Allows employees to keep a record of the classrooms in the university and their current status. 
@@ -57,7 +57,7 @@ You can find contact details, as well as links to projects I have worked on down
 * Currently being used by part-time staff at the UT Tyler Classroom Technology department.
 > *HTML/CSS* *JavaScript* *Node.js* *Express* *Heroku* *MongoDB* *Git*
 
-## Experience
+## Experience🥼
 ---
 ### Research Assistant, UT Tyler [Feb 2020 - Present]
 * Working on the development of image classification techniques based on invariant features.
@@ -68,7 +68,7 @@ You can find contact details, as well as links to projects I have worked on down
 * Weekly meetings to discuss progress and plans.
 > *CUDA* *C* *Python* *PyCUDA*
 
-## Honor and Awards
+## Honor and Awards🏆
 ---
 ### Full-Ride Scholarship
 > [University of Texas at Tyler](https://uttyler.edu)
