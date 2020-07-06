@@ -2,8 +2,34 @@ div{
     
     text-decoration: none;
     font-size: 18px;
+	color: #4d4d4d;
+}
+
+h1{
+	color: #4d4d4d;
+}
+
+h2{
+	color: #1ecee6;
+	font-family: montserrat;
 }
 
 h3{
 	font-size: 22px;
+	color: #3c3c3c;
+	font-weight: bold;
+}
+
+a{
+	color: #3c3c3c;
+}
+
+
+p{
+	color: #4d4d4d;
+}
+
+
+li{
+	color: #4d4d4d;
 }
