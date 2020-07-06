@@ -36,8 +36,8 @@ I have been programming for **six years** with a range of experience in **Softwa
 ### Capos📝
 > [💻View Live](https://capos.netlify.app/)
 * Full-Stack Web Application for creating portfolio websites.
-* Worked in a two person team using the agile methodology.
-* Desgined and developed User Interface, Restful API, and User Authentication using JWT.
+* Worked in a two-person team using the agile methodology.
+* Designed and developed User Interface, Restful API, and User Authentication using JWT.
 * Set up CI/CD pipeline using GitHub Actions.
 > *React* *Node* *Docker* *Azure* *Git* *Express*
 
@@ -51,8 +51,8 @@ I have been programming for **six years** with a range of experience in **Softwa
 
 ### Classroom Technology Web Application🏯
 > [💻View Live](https://classroom-technology.herokuapp.com) [🐙GitHub](https://github.com/asimsedhain/Classroom-technology)
-* Full-Stack web application for managing and visualizing classroom data for the Classroom Technology Department.
-* Allows employee to keep a record of the classrooms in the university and their current status. 
+* Full-Stack web application for managing and visualizing classroom data.
+* Allow employees to keep a record of the classrooms in the university and their current status. 
 * Developed the user interface, backend interface, user authentication, database, and data models.
 * Currently being used by part-time staff at the UT Tyler Classroom Technology department.
 > *HTML/CSS* *JavaScript* *Node.js* *Express* *Heroku* *MongoDB* *Git*
