@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<title>{title ? title + " - " : ""}SvelteKitTemplate</title>
+	<title>{title ? title + " - " : ""}Ashim Sedhain</title>
 </svelte:head>
 
 <slot />

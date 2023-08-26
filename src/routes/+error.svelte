@@ -16,7 +16,7 @@
 </script>
 
 <svelte:head>
-	<title>{title} - SvelteKitTemplate</title>
+	<title>{title} - Ashim Sedhain</title>
 </svelte:head>
 
 <h1>{title}</h1>

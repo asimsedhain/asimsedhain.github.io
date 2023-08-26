@@ -38,6 +38,7 @@
 
   p{
 	@apply leading-loose;
+	@apply my-5;
   }
 
   pre{
