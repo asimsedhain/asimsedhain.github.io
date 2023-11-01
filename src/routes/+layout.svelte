@@ -14,6 +14,6 @@
 
 <footer>
 	<p>
-		Template &copy; <Year from={2020} /> Ashim Sedhain.
+		Ashim Sedhain &copy; <Year from={2020} />
 	</p>
 </footer>
