@@ -1,5 +1,8 @@
 ---
 title: Page two
+date: Nov 04, 2023
+badges:
+    - test
 ---
 
 <script lang="ts">

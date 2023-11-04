@@ -1,5 +1,7 @@
-<script>
+<script lang="ts">
 	import { base, assets } from "$app/paths";
+
+	export let data;
 </script>
 
 <svelte:head>
@@ -24,8 +26,12 @@
 
 <h2>Ramblings</h2>
 
+<ul />
+
 <ul class="my-5">
-	<li>
-		<a href="{base}/page-two">Here's a page using Markdown.</a>
-	</li>
+	{#each data.posts as post}
+		<li>
+			<a href="{base}/{post.path}">{post.title}</a>
+		</li>
+	{/each}
 </ul>

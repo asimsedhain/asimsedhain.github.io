@@ -23,7 +23,7 @@ module.exports = {
 		"svelte3/ignore-styles": () => true
 	},
 	"rules": {
-		"brace-style": ["warn", "allman"],
+		"brace-style": ["warn", "1tbs"],
 		"block-spacing": ["warn", "always"],
 		"comma-dangle": ["warn", {
 			"arrays": "only-multiline",
