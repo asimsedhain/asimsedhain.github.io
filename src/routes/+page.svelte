@@ -6,7 +6,6 @@
 
 <svelte:head>
 	<title>Ashim Sedhain</title>
-	<link rel="icon" type="image/svg" href="{assets}/images/logo.svg" />
 </svelte:head>
 
 <h1 class="font-bold my-5">🏗️ Eternally Under Construction</h1>
