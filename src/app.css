@@ -41,7 +41,7 @@
 
   p{
 	@apply leading-loose;
-	@apply my-5;
+	@apply my-4;
   }
 
   pre{
