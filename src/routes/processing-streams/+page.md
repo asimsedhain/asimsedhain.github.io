@@ -1,5 +1,5 @@
 ---
-title: Thinking about stream processing in Rust 🦀 [Draft]
+title: "[Draft] Thinking about stream processing in Rust 🦀"
 date: Nov 04, 2023
 ---
 
@@ -7,7 +7,7 @@ date: Nov 04, 2023
 	import Note from "$lib/components/Note.svelte";
 </script>
 
-# Thinking about stream processing in Rust 🦀
+# [Draft] Thinking about stream processing in Rust 🦀
 
 [I recently read an excellent article from noz.ai](https://noz.ai/hash-pipeline/) (seems like the site is currently unavailable). It talks about different approaches to parallelizing a CPU bound task and compares their performance.
 One thing I found missing in that article was joining of streams or enriching streams with auxiliary data. It is a task that I come across regularly at work.
