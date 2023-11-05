@@ -11,16 +11,15 @@
 <h1 class="font-bold my-5">🏗️ Eternally Under Construction</h1>
 
 <p>
-	👋 Hi, I'm Ashim, a software engineer who loves to tinkering around with
-	code. When I'm not doing that, I'm like a curious inventor in my home lab,
-	playing with gadgets and gizmos. I also enjoy staying active – you'll often
-	find me working out or taking relaxing walks.
+	👋 Hello, I'm Ashim, a software engineer with a passion for coding. When I'm
+	not immersed in my work, I like to experiment with different open source
+	projects in my home lab. I also value staying active, whether through
+	workouts or leisurely walks.
 </p>
 
 <p>
-	Oh, and guess what's got me excited these days? Rust! I'm diving deep into
-	its world and exploring how it can team up with C using FFI. You can find
-	some of my ramblings below.
+	Recently, I've been learning Rust, particularly its integration with C using
+	FFI. Feel free to explore some of my thoughts on this below.
 </p>
 
 <h2>Ramblings</h2>
