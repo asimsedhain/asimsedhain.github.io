@@ -26,8 +26,56 @@ The trade tuple contains:
 * side (buy or sell)
 
 Now this trade data is coming from some trading engine that is responsible for making the trades. What we need to do is enrich this stream with auxiliary data so that it can use be used further downstream (be that by other systems or by human users who want to monitor this stream of data).
+One information that is useful for a human is instrument metadata. It will easier for them to view which instrument was actually traded. For example:
 
-To make our lives easier and also limit the scope, we will only allow for the following types of join:
+```python
+# trade we get from the engine
+trade = {
+    trade_id: 01,
+    insturment_id: 1234,
+    user_id: 0001,
+    trade_px: 100,
+    side: "buy"
+}
+
+# instrument metadata we get from some other system
+instrument = {
+    insturment_id: 1234,
+    ticker: "SPY",
+    strike: 200,
+    expiry: 241103,
+    type: "call"
+}
+
+# after joining
+enriched_trade = {
+    trade_id: 01,
+    insturment_id: 1234,
+    user_id: 0001,
+    trade_px: 100,
+    side: "buy"
+    instrument_ticker: "SPY",
+    instrument_strike: 200,
+    instrument_expiry: 241103,
+    instrument_type: "call"
+}
+
+# usually this is also processed down into a human readable format.
+# FYI this is an options instrument
+enriched_trade = {
+    trade_id: 01,
+    user_id: 0001,
+    trade_px: 100,
+    side: "buy"
+    instrument: "SPY241103C00200000",
+}
+
+```
+
+Now this is one join that might be needed to be done. We will keep with this example throughout the article.
+
+To make our lives easier and also limit the scope, we will consider the instrument data to either be static or slow moving.
+It will limit us to the following kind of joins:
 * stream to static data
 * stream to slow moving stream
 
@@ -36,7 +84,10 @@ What I mean by slow moving stream is the kind of stream where data is not changi
 </Note>
 
 
+Now let us write some code and see how it performs.
 
-### Baseline
+### Static Joins
 
-Let us first take a baseline of the performance. I will start with the simplest approach - a single thread that will take all the events coming in and join them. It will then output them to some sort of channel.
+#### Baseline
+We will first implement the most naive join and use that as our baseline. It will be single channel where both the trades and instrument metadata are published.
+
