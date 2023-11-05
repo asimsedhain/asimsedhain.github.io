@@ -1,9 +1,13 @@
-<script>
+<script lang="ts">
+	// @ts-ignore
 	export let title;
+
+	// @ts-ignore
+	$: titleTs = title as string;
 </script>
 
 <svelte:head>
-	<title>{title ? title + " - " : ""}Ashim Sedhain</title>
+	<title>{titleTs ? titleTs + " - " : ""}Ashim Sedhain</title>
 </svelte:head>
 
 <slot />

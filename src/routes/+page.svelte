@@ -26,8 +26,6 @@
 
 <h2>Ramblings</h2>
 
-<ul />
-
 <ul class="my-5">
 	{#each data.posts as post}
 		<li>

@@ -5,7 +5,7 @@
 <header tabindex="-1">
 	<div>
 		<nav>
-			<ul>
+			<ul class="list-none m-0">
 				<li><a href="{base}/">Home</a></li>
 			</ul>
 		</nav>

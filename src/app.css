@@ -72,6 +72,9 @@
 	  @apply mt-auto;
 	  @apply mb-0;
   }
+  ul{
+	  @apply ml-5 list-disc;
+  }
 
 }
 
