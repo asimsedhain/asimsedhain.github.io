@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
 	extensions: [".svx", ".md"],
 	remarkPlugins: [],
 	rehypePlugins: [],
@@ -8,3 +8,5 @@ module.exports = {
 	},
 	layout: "src/routes/_mdlayout.svelte",
 }
+
+export default config
