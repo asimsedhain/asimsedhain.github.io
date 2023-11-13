@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { base, assets } from "$app/paths";
+	import { base } from "$app/paths";
 
 	export let data;
 </script>
