@@ -11,7 +11,7 @@ date: Nov 04, 2023
 # [Draft] Thinking about stream processing in Rust 🦀
 
 [I recently read an excellent article from noz.ai](https://noz.ai/hash-pipeline/) (seems like the site is currently unavailable). It talks about different approaches to parallelizing a CPU bound task and compares their performance.
-One thing I found missing in that article was joining of streams or enriching streams with auxiliary data. It is a task that I come across regularly at work.
+ I suggest everyone to read the article themselves ([here is a link to the article using the wayback machine](https://web.archive.org/web/20230808151236/https://noz.ai/hash-pipeline/)). One thing I found missing in that article was joining of streams or enriching streams with auxiliary data. It is a task that I come across regularly at work. And this article will be sort of an exploration of different architectures and their performance.
 
 ### Problem
 First, let me give you a simplified scenario of the problem and limit the scope of this article as well. We have a stream of trades coming in. Each trade is a tuple that looks as follows:
@@ -27,7 +27,8 @@ The trade tuple contains:
 * side (buy or sell)
 
 Now this trade data is coming from some trading engine that is responsible for making the trades. What we need to do is enrich this stream with auxiliary data so that it can use be used further downstream (be that by other systems or by human users who want to monitor this stream of data).
-One information that is useful for a human is instrument metadata. It will easier for them to view which instrument was actually traded. For example:
+
+One information that might be useful for a human is know which instrument was exactly traded. The trade tuple only contains an ID and does not say exactly what was traded. For that, we will need to join the trade tuple with instrument metadata. For example:
 
 ```python
 # trade we get from the engine
@@ -97,7 +98,7 @@ fn main() {
     let mut gen = default_generator(n);
 
     // Pipeline holds the logic for the join
-    let pipeline = Pipeline::new();
+    let mut pipeline = PipelineStd::new();
     for i in 0..n {
         let message = gen.generate(i);
         let _ = pipeline.process(message);
@@ -108,17 +109,17 @@ fn main() {
 The code for `Pipeline` is also very simple:
 
 ```rust
-pub struct Pipeline {
-    instrument_map: DashMap<u32, String>,
+pub struct PipelineStd {
+    instrument_map: HashMap<u32, String>,
 }
 
-impl Pipeline {
-    pub fn new() -> Pipeline {
-        Pipeline {
-            instrument_map: DashMap::new(),
+impl PipelineStd {
+    pub fn new() -> PipelineStd {
+        PipelineStd {
+            instrument_map: HashMap::new(),
         }
     }
-    pub fn process(&self, message: Message) -> Option<EnrichedTrade> {
+    pub fn process(&mut self, message: Message) -> Option<EnrichedTrade> {
         match message {
             Message::Instrument(instrument) => {
                 self.instrument_map.insert(instrument.id, instrument.into());
@@ -147,28 +148,31 @@ We have a hashmap. When we get instrument message, we put it in a hashmap. When 
 The `generate` function uses [`fake-rs`](https://github.com/cksac/fake-rs) to generate the fake data. [You can find the code for the generation here.](https://github.com/asimsedhain/stream-processing-benchmark/blob/v/instrument-only/src/generator.rs#L94)
 
 <Note>
-Fake-rs is slow to generate random data. We will treat it as waiting for the data over a network.
+Fake-rs is slow to generate random data. We will treat it as blackbox with min latency that we cannot optimize such as waiting for the data over a network.
 </Note>
 
-
-Let's run it on hyperfine and see how it does.
+Let's run it on hyperfine and see how it does. We will be running all these benchmarks on a Macbook Air M1, 2020 laptop.
+You can also run the benchmarks yourself here by [cloning the repo](https://github.com/asimsedhain/stream-processing-benchmark/tree/v/instrument-only) and running it on your setup.
 
 ```bash
 cargo build --release
 
-hyperfine --warmup 3 "./target/release/naive 10000000"
+hyperfine --warmup 3 "./target/release/naive-std-hash 10000000"
 ```
 
 
 We get the following output:
 
 ```bash
-Benchmark 1: ./target/release/naive 10000000
-  Time (mean ± σ):      1.537 s ±  0.009 s    [User: 1.528 s, System: 0.007 s]
-  Range (min … max):    1.526 s …  1.550 s    10 runs
+Benchmark 1: ./target/release/naive-std-hash 10000000
+  Time (mean ± σ):      1.361 s ±  0.002 s    [User: 1.357 s, System: 0.004 s]
+  Range (min … max):    1.359 s …  1.364 s    10 runs
 ```
 
 Now that we have base line result, let us see if we can improve it by adding some concurrency.
+<Note>
+One thing to note is that, these benchmarks could change due to multitude of factors such as my laptop running on battery or the OS giving a bit more priority to my browser. As such, instead of focusing on the absolute time, we will relative time to compare our improvements.
+</Note>
 
 ### Channel and Threads
 
@@ -187,7 +191,7 @@ Now that we have base line result, let us see if we can improve it by adding som
 We will split the logic into distinct computation threads. thread 1 will be responsible for generating the data and thread 2 will be responsible for processing the data.
 Think of thread 1 as reading the data from the network and then passing it to thread 2 for processing.
 
-The code for that will look as follows:
+The code for the pipeline struct will remain the same and main function will look as follows:
 
 ```rust
 fn main() {
@@ -195,7 +199,7 @@ fn main() {
     let channel_size = get_channel_size(n);
 
     let mut gen = default_generator(n);
-    let pipeline = Pipeline::new();
+    let pipeline = PipelineStd::new();
     let (tx, rx) = mpsc::sync_channel(channel_size);
 
     thread::scope(|s| {
@@ -207,7 +211,7 @@ fn main() {
         });
 
         s.spawn(move || {
-            let pipeline = pipeline;
+            let mut pipeline = pipeline;
             while let Ok(message) = rx.recv() {
                 let _ = pipeline.process(message);
             }
@@ -219,18 +223,66 @@ fn main() {
 We run it through hyperfine and these are the results:
 
 ```bash
-Benchmark 1: ./target/release/naive-threads-std 10000000
-  Time (mean ± σ):      1.183 s ±  0.013 s    [User: 2.008 s, System: 0.157 s]
-  Range (min … max):    1.160 s …  1.200 s    10 runs
+Benchmark 1: ./target/release/naive-std-hash 10000000
+  Time (mean ± σ):      1.378 s ±  0.015 s    [User: 1.369 s, System: 0.005 s]
+  Range (min … max):    1.364 s …  1.402 s    10 runs
+ 
+Benchmark 2: ./target/release/thread-std-hash-std-channel 10000000
+  Time (mean ± σ):      1.240 s ±  0.011 s    [User: 1.917 s, System: 0.252 s]
+  Range (min … max):    1.228 s …  1.263 s    10 runs
+ 
+Summary
+  ./target/release/thread-std-hash-std-channel 10000000 ran
+    1.11 ± 0.02 times faster than ./target/release/naive-std-hash 10000000
 ```
 
-We can see that the results are ~23% faster than our naive approach. That is a decent improvement!
-If we look at the flamegraph of the naive approach, we will see that more than 50% of the time is spent on generating the data (which for now we will assume as being unoptimizable).
+We can see that the results are ~11% faster than our naive single threaded approach. That is a decent improvement!
+For a few simple line changes, I would consider it a decent win.
 
-##### Naive approach flamegraph
-<img src="{assets}/processing-streams/naive-flamegraph.svg" alt="naive-flamegraph" width="100%"/>
+### Dashmap
 
-If we look at the hyperfine output, we see that we are spending more time in the system space compared to the naive approach. Let's see if we can improve it by using a different implementation for channel.
+The generator currently is configured to produce trade event 90% of the time and instrument event 10% of the time. This means our workflow is read-heavy. I found [this benchmark](https://github.com/xacrimon/conc-map-bench) about concurrent hashmaps and wanted to see if trying a different implementation would lead to better resutls. The one we will be [Dashmap](https://docs.rs/dashmap/latest/dashmap/) as it has the highest througput for read-heavy workload.
+
+For this, we just need to change `insturment_map` to use `DashMap` instead of the `HashMap` from the standard library.
+
+```rust
+pub struct Pipeline {
+    instrument_map: DashMap<u32, String>,
+}
+```
+
+Now we create two more benhmarks and run them through hyperfine:
+
+```bash
+hyperfine --warmup 3 "./target/release/naive-std-hash 10000000" "./target/release/naive-dash-hash 10000000" "./target/release/thread-std-hash-std-channel 10000000" "./target/release/thread-dash-hash-std-channel 10000000"
+Benchmark 1: ./target/release/naive-std-hash 10000000
+  Time (mean ± σ):      1.396 s ±  0.075 s    [User: 1.374 s, System: 0.006 s]
+  Range (min … max):    1.363 s …  1.605 s    10 runs
+ 
+  Warning: Statistical outliers were detected. Consider re-running this benchmark on a quiet system without any interferences from other programs. It might help to use the '--warmup' or '--prepare' options.
+ 
+Benchmark 2: ./target/release/naive-dash-hash 10000000
+  Time (mean ± σ):      1.538 s ±  0.011 s    [User: 1.529 s, System: 0.006 s]
+  Range (min … max):    1.522 s …  1.554 s    10 runs
+ 
+Benchmark 3: ./target/release/thread-std-hash-std-channel 10000000
+  Time (mean ± σ):      1.254 s ±  0.006 s    [User: 1.938 s, System: 0.274 s]
+  Range (min … max):    1.246 s …  1.265 s    10 runs
+ 
+Benchmark 4: ./target/release/thread-dash-hash-std-channel 10000000
+  Time (mean ± σ):      1.160 s ±  0.009 s    [User: 1.978 s, System: 0.136 s]
+  Range (min … max):    1.143 s …  1.173 s    10 runs
+ 
+Summary
+  ./target/release/thread-dash-hash-std-channel 10000000 ran
+    1.08 ± 0.01 times faster than ./target/release/thread-std-hash-std-channel 10000000
+    1.20 ± 0.07 times faster than ./target/release/naive-std-hash 10000000
+    1.33 ± 0.01 times faster than ./target/release/naive-dash-hash 10000000
+```
+
+Now that is a lot of data. Lets see if we can visualize it better with a whisker plot.
+
+#### Insert whisker plot here
 
 
 ### Threads and Rings buffers
