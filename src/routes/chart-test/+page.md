@@ -4,7 +4,6 @@ date: Nov 04, 2023
 ---
 
 <script lang="ts">
-	import WhiskerPlotSsr from "$components/chart/WhiskerPlot.ssr.svelte";
 	import WhiskerPlotClient from "$components/chart/WhiskerPlot.client.svelte";
     import rawData from "./bench.json"
     import {longestCommonPrefix, longestCommonSuffix} from "$lib/utils"
@@ -18,7 +17,6 @@ date: Nov 04, 2023
         const end = command.length - suffixLen
         return ({ ...entry, group: command.substring(prefixLen, end) })
     })
-    console.log(data)
     
 </script>
 

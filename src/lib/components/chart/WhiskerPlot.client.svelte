@@ -21,7 +21,7 @@
 	const y: (keyof Measurement)[] = ["median", "mean", "std", "max", "min"];
 </script>
 
-<div class="chart-container">
+<div class="w-full h-80 mb-16">
 	<LayerCake
 		padding={{ top: 30, right: 20, bottom: 10, left: 30 }}
 		x="group"
@@ -38,16 +38,3 @@
 		</Svg>
 	</LayerCake>
 </div>
-
-<style>
-	/*
-    The wrapper div needs to have an explicit width and height in CSS.
-    It can also be a flexbox child or CSS grid element.
-    The point being it needs dimensions since the <LayerCake> element will
-    expand to fill it.
-  */
-	.chart-container {
-		width: 100%;
-		height: 300px;
-	}
-</style>

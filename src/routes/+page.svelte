@@ -26,7 +26,7 @@
 
 <ul class="my-5">
 	{#each data.posts as post}
-		<li>
+		<li class="my-2">
 			<a href="{base}/{post.path}">{post.title}</a>
 		</li>
 	{/each}
