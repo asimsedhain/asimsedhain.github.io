@@ -4,7 +4,7 @@ date: Nov 04, 2023
 ---
 
 <script lang="ts">
-	import Note from "$lib/components/Note.svelte";
+	import Note from "$components/Note.svelte";
     import { assets } from "$app/paths";
 </script>
 

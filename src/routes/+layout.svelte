@@ -1,7 +1,8 @@
 <script lang="ts">
 	import "../app.css";
-	import NavBar from "$lib/components/NavBar.svelte";
-	import Year from "$lib/components/Year.svelte";
+	import NavBar from "$components/NavBar.svelte";
+	import Year from "$components/Year.svelte";
+
 </script>
 
 <svelte:head>

@@ -17,6 +17,9 @@ export default {
 		paths: {
 			base: process.env.BASE_URL || "",
 		},
+		alias: {
+			"$components": "src/lib/components"
+		},
 	},
 
 }
