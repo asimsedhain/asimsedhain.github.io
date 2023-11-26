@@ -1,14 +1,3 @@
-<script context="module" lang="ts">
-	type Measurement = {
-		group: string;
-		median: number;
-		mean: number;
-		std: number;
-		max: number;
-		min: number;
-	};
-</script>
-
 <script lang="ts">
 	import { LayerCake, Svg } from "layercake";
 	import { scaleBand } from "d3-scale";
@@ -21,9 +10,9 @@
 	const y: (keyof Measurement)[] = ["median", "mean", "std", "max", "min"];
 </script>
 
-<div class="w-full h-80 mb-16">
+<div class="w-full h-80 mb-16 py-5">
 	<LayerCake
-		padding={{ top: 30, right: 20, bottom: 10, left: 30 }}
+		padding={{ left: 30 }}
 		x="group"
 		{y}
 		xScale={scaleBand().paddingInner(0.028).round(true)}

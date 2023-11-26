@@ -5,22 +5,8 @@ date: Nov 04, 2023
 
 <script lang="ts">
 	import Note from "$components/Note.svelte";
-	import WhiskerPlotClient from "$components/chart/WhiskerPlot.client.svelte";
-    import { assets } from "$app/paths";
-
-
-    import rawData from "./dashmap-benchmarks.json"
-    import {longestCommonPrefix, longestCommonSuffix} from "$lib/utils"
-
-    const commandArray = rawData.results.map(entry=>entry.command)
-    const prefixLen = longestCommonPrefix(commandArray).length
-    const suffixLen = longestCommonSuffix(commandArray).length
-
-    const data = rawData.results.map((entry) => {
-        const command = entry.command
-        const end = command.length - suffixLen
-        return ({ ...entry, group: command.substring(prefixLen, end) })
-    })
+	import WhiskerPlotClient from "$components/chart/WhiskerPlot.svelte";
+    export let data;
 </script>
 
 # [Draft] Thinking about stream processing in Rust 🦀
@@ -299,7 +285,7 @@ Now that is a lot of data. Lets see if we can visualize it better with a whisker
 
 ##### Scatter Plot showing the median time
 
-<WhiskerPlotClient {data} />
+<WhiskerPlotClient data={data.chartData} />
 
 
 
