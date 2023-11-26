@@ -26,7 +26,6 @@
 		yPadding={[20, 20]}
 		{yDomain}
 		{data}
-		debug={true}
 	>
 		<Html>
 			<Tooltip />

@@ -11,7 +11,7 @@
 
 	let selectedDataPoint: Measurement | null = null;
 
-	/** @type {Number} [offset=-35] - A y-offset from the hover point, in pixels. */
+	/** @type {Number} [offset=-15] - A y-offset from the hover point, in pixels. */
 	export let offset: number = -15;
 	$: isBandwidth = typeof $xScale.bandwidth === "function";
 
@@ -52,8 +52,6 @@
 	<div
 		class="hover-points"
 		style="
-		width: {Math.abs(offset)}px;
-		height: {Math.abs(offset)}px;
 		top:{median + offset}px;
         left:{xPoint}px;
     "
@@ -68,18 +66,21 @@
 
 <style>
 	.tooltip {
+		@apply bg-gray-100 bg-opacity-90;
+		@apply dark:bg-gray-900 dark:bg-opacity-90;
+		@apply text-base p-2;
+
 		position: absolute;
 		width: 180px;
 		border: 1px solid #ccc;
-		font-size: 13px;
-		background: rgba(255, 255, 255, 0.85);
+		z-index: 10;
 		transform: translate(-50%, -100%);
-		padding: 5px;
-		z-index: 15;
 	}
 	.hover-points {
 		position: absolute;
-		z-index: 20;
-		transform: translateX(-50%) translateY(50%);
+		z-index: 15;
+		width: 40px;
+		height: 40px;
+		transform: translateX(-50%);
 	}
 </style>
