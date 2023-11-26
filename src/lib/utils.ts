@@ -37,3 +37,39 @@ function monthAbbreviationToIndex(abbreviation: string) {
 	const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 	return months.indexOf(abbreviation) + 1
 }
+
+
+export function longestCommonPrefix(strs: string[]): string {
+	if (strs.length === 0) {
+		return ""
+	}
+
+	let prefix = strs[0]
+	for (let i = 1; i < strs.length; i++) {
+		while (strs[i].indexOf(prefix) !== 0) {
+			prefix = prefix.substring(0, prefix.length - 1)
+			if (prefix.length === 0) {
+				return ""
+			}
+		}
+	}
+	return prefix
+}
+
+export function longestCommonSuffix(strs: string[]): string {
+	if (strs.length === 0) {
+		return ""
+	}
+
+	let suffix = strs[0]
+	for (let i = 1; i < strs.length; i++) {
+		while (strs[i].substring(strs[i].length - suffix.length) !== suffix) {
+			suffix = suffix.substring(1)
+			if (suffix.length === 0) {
+				return ""
+			}
+		}
+	}
+	return suffix
+}
+

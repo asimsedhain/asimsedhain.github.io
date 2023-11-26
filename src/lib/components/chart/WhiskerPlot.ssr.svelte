@@ -3,7 +3,6 @@
 	import { scaleBand } from "d3-scale";
 	import AxisX from "./AxisX.html.svelte";
 	import AxisY from "./AxisY.html.svelte";
-	import Whisker from "./Whisker.svg.svelte";
 
 	const data = [
 		{ group: "naive-std-hash", median: 1.2 },
@@ -29,10 +28,6 @@
 			<AxisX gridlines={true} baseline={true} snapTicks={true} />
 			<AxisY gridlines={false} />
 		</Html>
-
-		<ScaledSvg>
-			<Whisker />
-		</ScaledSvg>
 	</LayerCake>
 </div>
 

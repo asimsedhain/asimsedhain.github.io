@@ -1,3 +1,14 @@
+<script context="module" lang="ts">
+	type Measurement = {
+		group: string;
+		median: number;
+		mean: number;
+		std: number;
+		max: number;
+		min: number;
+	};
+</script>
+
 <script lang="ts">
 	import { LayerCake, Svg } from "layercake";
 	import { scaleBand } from "d3-scale";
@@ -5,27 +16,24 @@
 	import AxisY from "./AxisY.svg.svelte";
 	import Whisker from "./Whisker.svg.svelte";
 
-	const data = [
-		{ group: "naive-std-hash", median: 1.2 },
-		{ group: "naive-dash-hash", median: 1.4 },
-		{ group: "thread-std-hash-std-channel", median: 1.1 },
-		{ group: "thread-dash-hash-std-channel", median: 1 },
-	];
+	export let data: Measurement[];
+
+	const y: (keyof Measurement)[] = ["median", "mean", "std", "max", "min"];
 </script>
 
 <div class="chart-container">
 	<LayerCake
-		padding={{ top: 0, right: 20, bottom: 20, left: 25 }}
+		padding={{ top: 30, right: 20, bottom: 10, left: 30 }}
 		x="group"
-		y="median"
+		{y}
 		xScale={scaleBand().paddingInner(0.028).round(true)}
 		xDomain={data.map((entry) => entry.group)}
-		yDomain={[0, null]}
+		yPadding={[20, 20]}
 		{data}
 	>
 		<Svg>
-			<AxisX gridlines={true} baseline={true} snapTicks={true} />
-			<AxisY gridlines={false} />
+			<AxisX gridlines={true} baseline={true} />
+			<AxisY gridlines={true} />
 			<Whisker />
 		</Svg>
 	</LayerCake>
@@ -40,6 +48,6 @@
   */
 	.chart-container {
 		width: 100%;
-		height: 250px;
+		height: 300px;
 	}
 </style>
