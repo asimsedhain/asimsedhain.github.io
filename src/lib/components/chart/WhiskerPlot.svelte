@@ -14,6 +14,10 @@
 		Math.min(...data.map((d) => d.min)),
 		Math.max(...data.map((d) => d.max)),
 	];
+
+	function formatTick(tick: number) {
+		return tick + "s";
+	}
 </script>
 
 <div class="w-full h-80 mb-16 py-5">
@@ -32,7 +36,7 @@
 		</Html>
 		<Svg>
 			<AxisX gridlines={true} baseline={true} />
-			<AxisY gridlines={true} />
+			<AxisY gridlines={true} {formatTick} />
 			<Whisker />
 		</Svg>
 	</LayerCake>
