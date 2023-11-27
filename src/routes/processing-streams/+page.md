@@ -1,5 +1,5 @@
 ---
-title: "[Draft] Thinking about stream processing in Rust 🦀"
+title: "Thinking about stream processing in Rust 🦀"
 date: Nov 04, 2023
 ---
 
@@ -506,5 +506,7 @@ Summary
 
 Hmmm, this is strange. `thread-dash-hash-rtrb-channel` still performs the best but adding this new join causes the performance of the other threaded approach to be worse than the `naive-std-hash`. Seems like the cost of multi-threading does not pay off when there is an extra join.
 
+Overall, it has been interesting to see how the performation changes with different approaches. I believe there are still ways of getting more performance out of the multi-threaded approaches. It would be an interesting idea to profile it and see where is the actual bottleneck. But that is for another day.
 
+[You can find the link to the source code here](https://github.com/asimsedhain/stream-processing-benchmark/tree/v/instrument-user-join)
 
