@@ -104,7 +104,7 @@
 	}
 
 	.tick text {
-		fill: #666;
+		@apply fill-current;
 	}
 
 	.tick .tick-mark,
