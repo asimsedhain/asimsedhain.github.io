@@ -10,12 +10,17 @@
 
 <h1 class="font-bold my-5">🏗️ Eternally Under Construction</h1>
 
-<p>
-	👋 Hello, I'm Ashim, a software engineer with a passion for coding. When I'm
-	not immersed in my work, I like to experiment with different open source
-	projects in my home lab. I also value staying active, whether through
-	workouts or leisurely walks.
-</p>
+<p>👋 Hello, I'm Ashim.</p>
+
+<ul>
+	<li>I like coding.</li>
+	<li>I am currently working as a software engineer for a finance firm.</li>
+	<li>
+		I like working on my homelab - trying to make my home into a smart home
+		one automation.
+	</li>
+	<li>I like to stay active.</li>
+</ul>
 
 <p>
 	Recently, I've been learning Rust, particularly its integration with C using
