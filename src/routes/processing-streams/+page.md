@@ -12,7 +12,7 @@ date: Nov 04, 2023
 # [Draft] Thinking about stream processing in Rust 🦀
 
 [I recently read an excellent article from noz.ai](https://noz.ai/hash-pipeline/) (seems like the site is currently unavailable). It talks about different approaches to parallelizing a CPU bound task and compares their performance.
- I suggest everyone to read the article themselves ([here is a link to the article using the wayback machine](https://web.archive.org/web/20230808151236/https://noz.ai/hash-pipeline/)). One thing I found missing in that article was joining of streams or enriching streams with auxiliary data. It is a task that I come across regularly at work. And this article will be sort of an exploration of different architectures and their performance.
+ I suggest everyone to read the article themselves ([here is a link to the article using the wayback machine](https://web.archive.org/web/20230808151236/https://noz.ai/hash-pipeline/)). One thing I found missing in that article was joining of streams or enriching streams with auxiliary data. It is a task that I come across regularly at work. And this article will be sort of an exploration of different approaches suggested in that article in context of my stream processing workload.
 
 ### Problem
 First, let me give you a simplified scenario of the problem and limit the scope of this article as well. We have a stream of trades coming in. Each trade is a tuple that looks as follows:
@@ -172,7 +172,7 @@ Benchmark 1: ./target/release/naive-std-hash 10000000
 
 Now that we have base line result, let us see if we can improve it by adding some concurrency.
 <Note>
-One thing to note is that, these benchmarks could change due to multitude of factors such as my laptop running on battery or the OS giving a bit more priority to my browser. As such, instead of focusing on the absolute time, we will relative time to compare our improvements.
+One thing to note is that, these benchmarks could change due to multitude of factors such as my laptop running on battery or the OS giving a bit more priority to my browser. As such, instead of focusing on the absolute time, we will just focus on relative performance to see if we have made any improvements or not.
 </Note>
 
 ### Channel and Threads
@@ -283,16 +283,17 @@ Summary
 
 Now that is a lot of data. Lets see if we can visualize it better with a whisker plot.
 
-##### Scatter Plot showing the median time
+##### Scatter Plot showing the median time (lower is better)
 
-<WhiskerPlotClient data={data.chartData} />
+<WhiskerPlotClient data={data.dashmapChartData} />
+
+Looking at the chart, we can see that our multi-threaded appraoch with dash-map performance the best. What is surprising is that the naive approach with dashmap is the worst performing. Not entire sure why that might be the case. Maybe sometime in the future, I will profile it further.
 
 
+### Rings buffers
 
-
-### Threads and Rings buffers
-
-Just going by the benchmarks performed by noz.ai, we will use the ring buffer implementation from the rtrb library.
+The final approach used by noz.ai was using a ring buffer instead of the channel provided by the std library.
+The article already provides a lot of performant implementation for ring buffers. For this we will just be using the [rtrb library](https://docs.rs/rtrb/latest/rtrb/).
 The code for that will look as follows:
 
 ```rust
@@ -341,11 +342,169 @@ fn main() {
 ```
 
 The implementation is quite the same. We are just swappig out the std mpsc channel for a spsc ring buffer that is wait-free and lock-free.
+We add an extra loop to retry in-case the channel is full. 
 When we run it using hyperfine, we get the following results:
 
 ```bash
-Benchmark 1: ./target/release/naive-threads-rtrb 10000000
-  Time (mean ± σ):      1.006 s ±  0.004 s    [User: 1.743 s, System: 0.010 s]
-  Range (min … max):    1.001 s …  1.015 s    10 runs
+Benchmark 1: ./target/release/naive-std-hash 10000000
+  Time (mean ± σ):      1.385 s ±  0.022 s    [User: 1.374 s, System: 0.001 s]
+  Range (min … max):    1.362 s …  1.436 s    10 runs
+ 
+Benchmark 2: ./target/release/naive-dash-hash 10000000
+  Time (mean ± σ):      1.533 s ±  0.012 s    [User: 1.527 s, System: 0.001 s]
+  Range (min … max):    1.517 s …  1.555 s    10 runs
+ 
+Benchmark 3: ./target/release/thread-std-hash-std-channel 10000000
+  Time (mean ± σ):      1.219 s ±  0.006 s    [User: 1.890 s, System: 0.224 s]
+  Range (min … max):    1.209 s …  1.225 s    10 runs
+ 
+Benchmark 4: ./target/release/thread-dash-hash-std-channel 10000000
+  Time (mean ± σ):      1.191 s ±  0.004 s    [User: 2.021 s, System: 0.178 s]
+  Range (min … max):    1.185 s …  1.198 s    10 runs
+ 
+Benchmark 5: ./target/release/thread-dash-hash-rtrb-channel 10000000
+  Time (mean ± σ):      1.029 s ±  0.041 s    [User: 1.766 s, System: 0.008 s]
+  Range (min … max):    1.006 s …  1.138 s    10 runs
+ 
+  Warning: Statistical outliers were detected. Consider re-running this benchmark on a quiet system without any interferences from other programs. It might help to use the '--warmup' or '--prepare' options.
+ 
+Summary
+  ./target/release/thread-dash-hash-rtrb-channel 10000000 ran
+    1.16 ± 0.05 times faster than ./target/release/thread-dash-hash-std-channel 10000000
+    1.18 ± 0.05 times faster than ./target/release/thread-std-hash-std-channel 10000000
+    1.35 ± 0.06 times faster than ./target/release/naive-std-hash 10000000
+    1.49 ± 0.06 times faster than ./target/release/naive-dash-hash 10000000
 ```
+
+##### Scatter Plot showing the median time (lower is better)
+
+<WhiskerPlotClient data={data.rtrbChartData} />
+
+Now this is interesting, the approach using rtrb is faster but it has a much bigger spread. The lines around the point show the range of times observed during our benchmarks and only the rtrb one has the biggest spread.
+Even though, the rtrb approach has a higher spread, it is statistically faster.
+
+### Multi Joins
+
+Now, one way join is a simple case but usually the workload involves multiple joins and side effects that could result from the result of those joins. Right now, I think it will be hard to model side effects from joins (e.g. dynamically subscribing/unsubscribing to other channels based on the join). But we can emulate multi joins.
+
+Let us supposed in addition to instrument data, we also want to know who did the trade. We have the user ID, we will now need to join this with the user field in order to get the final view.
+On a high-level it will look as follows:
+
+
+```python
+# we have the enriched_trade from before
+enriched_trade = {
+    trade_id: 01,
+    user_id: 0001,
+    trade_px: 100,
+    side: "buy"
+    instrument: "SPY241103C00200000",
+}
+
+# we have data about the user
+user = {
+    id: 0001,
+    username: "DiamonHands"
+}
+
+# finnaly after we join these, we get
+user_enriched_trade{
+    trade_id: 01,
+    user: "DiamonHands",
+    trade_px: 100,
+    side: "buy"
+    instrument: "SPY241103C00200000",
+}
+```
+
+We will also modify our generator emit user messages 1% of the time. So, the distribution will look as follows:
+* 2% user message
+* 8% instrument message
+* 90% trade message
+
+The code change to handle this case will also be very minimal and look as follows:
+
+```rust
+
+pub struct PipelineDash {
+    instrument_map: DashMap<u32, String>,
+    // We add a new map to store users
+    user_map: DashMap<u32, String>,
+}
+
+impl PipelineDash {
+    pub fn new() -> PipelineDash {
+        PipelineDash::default()
+    }
+    pub fn process(&self, message: Message) -> Option<EnrichedTrade> {
+        match message {
+            Message::Instrument(instrument) => {
+                self.instrument_map.insert(instrument.id, instrument.into());
+            }
+            // insert them when we get a user message
+            Message::User(user) => {
+                self.user_map.insert(user.id, user.username);
+            }
+
+            Message::Trade(trade) => {
+                let Some(instrument) = self.instrument_map.get(&trade.insturment_id) else {
+                    return None;
+                };
+
+                // join users if they are found
+                // or do nothing in case they are not found
+                let Some(user) = self.user_map.get(&trade.user_id) else {
+                    return None;
+                };
+
+                return Some(EnrichedTrade {
+                    insturment: instrument.clone(),
+                    id: trade.id,
+                    user: user.clone(),
+                    trade_px: trade.trade_px,
+                    side: trade.side,
+                });
+            }
+        };
+        None
+    }
+}
+```
+
+Now, let us see how this performs.
+
+```bash
+Benchmark 1: ./target/release/naive-std-hash 10000000
+  Time (mean ± σ):      1.244 s ±  0.027 s    [User: 1.239 s, System: 0.001 s]
+  Range (min … max):    1.217 s …  1.295 s    10 runs
+ 
+Benchmark 2: ./target/release/naive-dash-hash 10000000
+  Time (mean ± σ):      1.438 s ±  0.027 s    [User: 1.429 s, System: 0.002 s]
+  Range (min … max):    1.412 s …  1.501 s    10 runs
+ 
+Benchmark 3: ./target/release/thread-std-hash-std-channel 10000000
+  Time (mean ± σ):      1.390 s ±  0.017 s    [User: 1.869 s, System: 0.375 s]
+  Range (min … max):    1.370 s …  1.417 s    10 runs
+ 
+Benchmark 4: ./target/release/thread-dash-hash-std-channel 10000000
+  Time (mean ± σ):      1.341 s ±  0.029 s    [User: 2.069 s, System: 0.260 s]
+  Range (min … max):    1.315 s …  1.396 s    10 runs
+ 
+Benchmark 5: ./target/release/thread-dash-hash-rtrb-channel 10000000
+  Time (mean ± σ):      1.064 s ±  0.012 s    [User: 1.639 s, System: 0.012 s]
+  Range (min … max):    1.053 s …  1.091 s    10 runs
+ 
+Summary
+  ./target/release/thread-dash-hash-rtrb-channel 10000000 ran
+    1.17 ± 0.03 times faster than ./target/release/naive-std-hash 10000000
+    1.26 ± 0.03 times faster than ./target/release/thread-dash-hash-std-channel 10000000
+    1.31 ± 0.02 times faster than ./target/release/thread-std-hash-std-channel 10000000
+    1.35 ± 0.03 times faster than ./target/release/naive-dash-hash 10000000
+```
+
+<WhiskerPlotClient data={data.instrumentUserChartData} />
+
+Hmmm, this is strange. `thread-dash-hash-rtrb-channel` still performs the best but adding this new join causes the performance of the other threaded approach to be worse than the `naive-std-hash`. Seems like the cost of multi-threading does not pay off when there is an extra join.
+
+
 
