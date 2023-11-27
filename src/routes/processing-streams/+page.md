@@ -1,6 +1,7 @@
 ---
 title: "Thinking about stream processing in Rust 🦀"
 date: Nov 04, 2023
+status: Published
 ---
 
 <script lang="ts">
@@ -9,7 +10,7 @@ date: Nov 04, 2023
     export let data;
 </script>
 
-# [Draft] Thinking about stream processing in Rust 🦀
+# Thinking about stream processing in Rust 🦀
 
 [I recently read an excellent article from noz.ai](https://noz.ai/hash-pipeline/) (seems like the site is currently unavailable). It talks about different approaches to parallelizing a CPU bound task and compares their performance.
  I suggest everyone to read the article themselves ([here is a link to the article using the wayback machine](https://web.archive.org/web/20230808151236/https://noz.ai/hash-pipeline/)). One thing I found missing in that article was joining of streams or enriching streams with auxiliary data. It is a task that I come across regularly at work. And this article will be sort of an exploration of different approaches suggested in that article in context of my stream processing workload.

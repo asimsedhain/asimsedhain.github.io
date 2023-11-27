@@ -1,6 +1,7 @@
 ---
 title: "Testing charts"
 date: Nov 04, 2023
+status: Test
 ---
 
 <script lang="ts">

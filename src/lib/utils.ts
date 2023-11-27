@@ -1,4 +1,4 @@
-import type { PostMeta } from "$lib/types"
+import { PostStatus, type PostMeta } from "$lib/types"
 
 export function getPosts(): PostMeta[] {
 	const prefix = "/src/routes/"
@@ -8,8 +8,13 @@ export function getPosts(): PostMeta[] {
 
 	const allPosts = Object.entries(allPostFiles).map(([path, post]: [string, { metadata: PostMeta }]) => {
 		const postPath = path.slice(prefix.length, -suffix.length)
+		console.log(post.metadata, PostStatus.Published)
 		return { ...post.metadata, path: postPath }
+	}).filter(post => {
+		const status = post.status.toUpperCase()
+		return status === PostStatus.Published || status === PostStatus.Draft
 	})
+
 	const posts = allPosts.sort((a, b) => parseMonthDayYearFormat(b.date).getTime() - parseMonthDayYearFormat(a.date).getTime())
 
 	return posts
