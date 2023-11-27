@@ -8,7 +8,6 @@ export function getPosts(): PostMeta[] {
 
 	const allPosts = Object.entries(allPostFiles).map(([path, post]: [string, { metadata: PostMeta }]) => {
 		const postPath = path.slice(prefix.length, -suffix.length)
-		console.log(post.metadata, PostStatus.Published)
 		return { ...post.metadata, path: postPath }
 	}).filter(post => {
 		const status = post.status.toUpperCase()
