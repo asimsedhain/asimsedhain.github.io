@@ -5,7 +5,7 @@
 	"license": "UNLICENSED",
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^1.0.5",
-		"@sveltejs/kit": "^1.15.2",
+		"@sveltejs/kit": "^1.27.7",
 		"@types/d3-scale": "^4.0.8",
 		"@types/html-minifier": "^4.0.2",
 		"@typescript-eslint/eslint-plugin": "^6.12.0",
