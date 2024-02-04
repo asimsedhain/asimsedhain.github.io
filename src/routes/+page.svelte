@@ -14,10 +14,10 @@
 
 <ul>
 	<li>I like coding.</li>
-	<li>I am currently working as a software engineer for a finance firm.</li>
+	<li>I am currently working as a software engineer for a HFT trading firm.</li>
 	<li>
 		I like working on my homelab - trying to make my home into a smart home
-		one automation.
+		one automation at a time.
 	</li>
 	<li>I like to stay active.</li>
 </ul>
