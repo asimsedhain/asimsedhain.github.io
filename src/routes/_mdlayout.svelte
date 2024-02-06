@@ -1,6 +1,7 @@
 <script lang="ts">
-	// @ts-ignore
-	export let title;
+
+	// @ts-expect-error: type for title is assigned by sveltekit
+	export let title: string
 </script>
 
 <svelte:head>
