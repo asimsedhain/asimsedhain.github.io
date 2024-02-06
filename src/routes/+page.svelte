@@ -14,7 +14,9 @@
 
 <ul>
 	<li>I like coding.</li>
-	<li>I am currently working as a software engineer for a HFT trading firm.</li>
+	<li>
+		I am currently working as a software engineer for a HFT trading firm.
+	</li>
 	<li>
 		I like working on my homelab - trying to make my home into a smart home
 		one automation at a time.
@@ -32,7 +34,10 @@
 <ul class="my-5">
 	{#each data.posts as post}
 		<li class="my-2">
-			<a href="{base}/{post.path}">{post.title}</a>
+			<a href="{base}/{post.path}"> {post.title} </a>
+			<span class="text-gray-500 dark:text-gray-600">
+				( {post.date} )
+			</span>
 		</li>
 	{/each}
 </ul>
