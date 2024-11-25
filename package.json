@@ -4,8 +4,8 @@
 	"private": true,
 	"license": "UNLICENSED",
 	"devDependencies": {
-		"@sveltejs/adapter-static": "^1.0.5",
-		"@sveltejs/kit": "^1.30.4",
+		"@sveltejs/adapter-static": "^3.0.6",
+		"@sveltejs/kit": "^2.8.3",
 		"@types/d3-scale": "^4.0.8",
 		"@types/html-minifier": "^4.0.2",
 		"@typescript-eslint/eslint-plugin": "^6.12.0",
